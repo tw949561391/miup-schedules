@@ -6,8 +6,6 @@ const Schudule=require('./service/schedule');
 
 module.exports = {
     bootstrap: function () {
-
-
         let schdules = [];
         let fs = rd.readFileSync(path.join(__dirname, 'schedules/'));
         fs.forEach(f => {
@@ -16,13 +14,18 @@ module.exports = {
             let schduleName = filename.split('.')[0];
             log_conf_base.appenders[schduleName] = {
                 type: 'dateFile',
-                filename: `${schduleName}.log`,
+                filename: `logs/${schduleName}.log`,
+                pattern: '.yyyy-MM-dd'
             };
-            log_conf_base.categories.default.appenders.push(schduleName);
+
+            log_conf_base.categories[schduleName]={
+                appenders:[schduleName],
+                level:'debug'
+            }
             let schdule={
                 file:f,
                 name:schduleName
-            }
+            };
             schdules.push(schdule);
         });
 
