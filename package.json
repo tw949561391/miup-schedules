@@ -1,0 +1,17 @@
+{
+  "name": "miup-schedules",
+  "version": "0.0.1",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "generic-pool": "^3.1.7",
+    "log4js": "^2.3.3",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.31",
+    "node-schedule": "^1.2.4",
+    "qiniu": "^7.0.8",
+    "rd": "^1.1.2",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "uuid": "^3.1.0"
+  }
+}
