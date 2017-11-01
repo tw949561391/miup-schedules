@@ -1,5 +1,5 @@
 module.exports.mongo = {
-    uri: 'db.miup.cc',
-    port: '27017',
+    uri: 'miup.cc',
+    port: '17017',
     dbName: 'joke-test'
 };

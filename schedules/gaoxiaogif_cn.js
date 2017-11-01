@@ -14,9 +14,9 @@ module.exports = {
     parser: function ($) {
         let resdata = [];
         $('body > div.site-w.index.clearfix > div.col1 > div > ul > li').each((i, e) => {
-            let item = $(e).find('img.lazy')[0]
+            let item = $(e).find('img.lazy')[0];
             if (item) {
-                let title=$(e).find('span.showtxt')[0].children[0].data;;
+                let title = $(e).find('span.showtxt')[0].children[0].data;
                 let img = item.attribs['data-original'];
                 let out_id = cryptoUtil.md5(title + img);
                 resdata.push({
