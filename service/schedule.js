@@ -25,7 +25,7 @@ module.exports = function (conf, log) {
                         url: url,
                         headers: conf.request.headers,
                         transform: conf.request.transform
-                    }.log);
+                    },log);
                     log.info(`获取第${page}页的数据结束`);
                     let datas = [];
                     try {

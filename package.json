@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node bin/start",
-    "server": "forever start -a -l  /var/log/node/funny-schedule/forever.log -o /var/log/node/funny-schedule/out.log -e /var/log/node/funny-schedule/err.log bin/start",
+    "server": "forever start -a -l  /var/log/node/funny-schedules/forever.log -o /var/log/node/funny-schedules/out.log -e /var/log/node/funny-schedules/err.log bin/start",
     "server-stop": "forever stop bin/start",
-    "upload": "scp -pw Tristan201314 -r ./ root@miup.cc:/schedule/funny"
+    "upload": "scp -pw Tristan201314 -r ./ root@miup.cc:/web/funny-schedule"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",

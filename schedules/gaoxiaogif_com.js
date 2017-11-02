@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const cryptoUtil = require('../util/crypto.util');
 const Iconv = require('iconv-lite');
 module.exports = {
-    schedule: '0 0 */1 * * *',
+    schedule: '0 0 */3 * * *',
     // schedule: '*/1 * * * * *',
 
     collection: 'joke',

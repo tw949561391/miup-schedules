@@ -14,7 +14,8 @@ module.exports = {
             let schduleName = filename.split('.')[0];
             log_conf_base.appenders[schduleName] = {
                 type: 'dateFile',
-                filename: `/var/log/schdule/miup-schedules/logs/${schduleName}.log`,
+                filename: `/var/log/node/funny-schedules/logs/${schduleName}.log`,
+                // filename: `./logs/${schduleName}.log`,
                 pattern: '.yyyy-MM-dd'
             };
 
