@@ -1,5 +1,5 @@
 const schedule = require('node-schedule');
-const Mongo = require('../datasource/mongo');
+const Mongo = require('../core/mongo');
 const Util = require('util');
 const HttpService = require('./http.service');
 
@@ -7,9 +7,10 @@ const entitySaveService = require('./entitySave.service');
 
 
 module.exports = function (conf, log) {
-    log.info('创建定时任务成功')
+    log.info('创建定时任务成功');
     this.job = schedule.scheduleJob(conf.schedule, async () => {
-            log.info('----------------------------------------start')
+            let id = Date.now();
+            log.info('---------------' + id + '-------------------------start')
             log.info('定时任务开始，创建数据库链接');
             const client = await Mongo.acquire();
             const db = client.collection(conf.collection);
@@ -25,29 +26,29 @@ module.exports = function (conf, log) {
                         url: url,
                         headers: conf.request.headers,
                         transform: conf.request.transform
-                    },log);
+                    }, log);
                     log.info(`获取第${page}页的数据结束`);
-                    let datas = [];
-                    try {
-                        datas = conf.parser(res);
-                    } catch (e) {
-                        log.error(e);
-                        log.error('解析实体失败')
+                    let datas = await conf.parser(res);
+                    if (datas.length === 0) {
+                        log.info(`没有解析到数据`);
+                        break;
                     }
                     log.info(`解析第　${page}页的数据完毕，获取${datas.length}条数据，开始保存。。。`);
-                    let savecount = await  entitySaveService.saveEntitys(datas, db);
-                    log.info(`保存完毕，共保存了${savecount}条数据`);
-                    if (0 === savecount || 0 === datas.length) {
-                        canNext = false;
-                        log.info(`该次请求的${datas.length}条数据，都已经被保存！所以可知后面都已经保存，跳出循环`)
+                    for (let entity of datas) {
+                        canNext = await  entitySaveService.saveEntity(entity, db);
+                        log.info(`实体保存${canNext}:${entity.out_id}`);
+                        if (false === canNext) {
+                            break;
+                        }
                     }
+                    log.info(`保存完毕，共保存了${datas.length}条数据`);
                 } while (canNext);
             } catch (e) {
                 log.error(e);
             } finally {
                 log.info('定时任务结束，释放数据库链接');
                 Mongo.release(client);
-                log.info('----------------------------------------end')
+                log.info('------------' + id + '----------------------------end')
             }
         }
     );

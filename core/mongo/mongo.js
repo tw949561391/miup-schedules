@@ -1,7 +1,7 @@
 //--import
 const GenericPool = require('generic-pool');
 const MongoClient = require('mongodb').MongoClient;
-const conf_mongo = require('./conf').mongo;
+const conf_mongo = require('../../conf').mongo;
 
 const factory = {
     create: function () {
