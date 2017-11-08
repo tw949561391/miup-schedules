@@ -1,6 +1,6 @@
-const cryptoUtil = require('../util/crypto.util');
+const cryptoUtil = require('../core/util/crypto.util');
 module.exports = {
-    schedule: '0 25 */3 * * *',
+    schedule: '0 10 */2 * * *',
     startpage: 1,
     collection: 'joke',
     request: {
@@ -10,19 +10,33 @@ module.exports = {
             return JSON.parse(body);
         }
     },
-    parser: function (body) {
-        let dataList=new Array();
-        let list=body.showapi_res_body.contentlist;
-        for(let l of list){
-            let item={
-                title:l.title,
-                pics:[l.img],
-                create_time:new Date(),
-                out_id: cryptoUtil.md5(l.title + l.img),
-                type:1
-            };
-            dataList.push(item);
-        }
-        return dataList;
-    }
+    parser: function (body,log) {
+        return new Promise((resolve, reject) => {
+            let dataList = new Array();
+            try {
+                let list = body.showapi_res_body.contentlist;
+                for (let l of list) {
+                    let pics = [];
+                    if (l.img) {
+                        pics.push(l.img);
+                    }
+                    let item = {
+                        title: l.title,
+                        pics: pics,
+                        create_time: new Date(),
+                        out_id: cryptoUtil.md5(l.title + l.img),
+                        type: 1,
+                        from: 'ali-joke.showapi.com'
+                    };
+                    dataList.push(item);
+                }
+            } catch (e) {
+                log.error(e);
+            } finally {
+                resolve(dataList);
+            }
+        })
+    },
+    qiniuParams: ['pics']
+
 };

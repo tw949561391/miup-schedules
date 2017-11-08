@@ -3,17 +3,18 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node bin/start",
-    "server": "forever start -a -l  /var/log/node/funny-schedules/forever.log -o /var/log/node/funny-schedules/out.log -e /var/log/node/funny-schedules/err.log bin/start",
+    "server": "forever start -a -l  /var/log/node/miup-schedules/forever.log -o /var/log/node/miup-schedules/out.log -e /var/log/node/miup-schedules/err.log bin/start",
     "server-stop": "forever stop bin/start",
-    "upload": "scp -pw Tristan201314 -r ./ root@miup.cc:/web/funny-schedule"
+    "upload": "scp  -r ./ root@miup.cc:/web/miup-schedule"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "generic-pool": "^3.1.7",
+    "iconv-lite": "^0.4.19",
     "log4js": "^2.3.3",
     "moment": "^2.18.1",
     "mongodb": "^2.2.31",
-    "node-schedule": "^1.2.4",
+    "node-schedule": "^1.2.5",
     "qiniu": "^7.0.8",
     "rd": "^1.1.2",
     "request": "^2.81.0",

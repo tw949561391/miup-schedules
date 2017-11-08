@@ -3,7 +3,7 @@ module.exports = {
     query_datasource_get: async function (options, log) {
         let response = null;
         let errorTimes = 1;
-        while (errorTimes <= 5) {
+        while (errorTimes <= 20) {
             try {
                 response = await HttpRequest(options);
                 break;

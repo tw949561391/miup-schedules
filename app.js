@@ -2,6 +2,7 @@ const rd = require('rd');
 const path = require('path');
 const Logger = require('log4js');
 const LogConf = require('./conf').log;
+const Conf = require('./conf');
 const Schudule = require('./service/schedule');
 
 
@@ -19,9 +20,8 @@ module.exports = {
                 filename: `${LogConf.path}logs/${schduleName}.log`,
                 pattern: '.yyyy-MM-dd'
             };
-
             log_conf_base.categories[schduleName] = {
-                appenders: [schduleName],
+                appenders: Conf.dev ? [schduleName, 'out'] : [schduleName],
                 level: 'debug'
             };
             let schdule = {
@@ -35,8 +35,7 @@ module.exports = {
 
         schdules.forEach(s => {
             const sc = require(s.file);
-            Schudule(sc, Logger.getLogger(s.name));
+            new Schudule(sc, Logger.getLogger(s.name));
         })
     }
 };
-

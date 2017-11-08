@@ -12,25 +12,27 @@ const Util = require('util');
  * @param filetype
  * @returns {Promise.<*>}
  */
-module.exports.saveStreamAndGetDownloadUrlByTime = async function (fileUrl, prefix, filetype) {
-    let errorTime = 0;
+module.exports.saveStreamAndGetDownloadUrlByTime = async function (fileUrl,log, prefix, filetype) {
     let res = null;
-    while (errorTime < 5) {
+    for (let i = 0; i <= 10; i++) {
         try {
-            res = await saveStreamAndGetDownloadUrl(fileUrl, prefix, filetype);
+            res = await saveStreamAndGetDownloadUrl(fileUrl,log, prefix, filetype);
+            return res;
             break;
         } catch (e) {
-            errorTime++;
+            if(log) log.error(e);
         }
     }
     if (res === null) {
         throw new Error('saveStreamAndGetDownloadUrlByTime error')
     }
-    return res;
 };
 
 
-function saveStreamAndGetDownloadUrl(fileUrl, prefix, filetype) {
+function saveStreamAndGetDownloadUrl(fileUrl,log, prefix, filetype) {
+    if(log){
+        log.info(fileUrl)
+    }
     return new Promise((resolve, reject) => {
         let config = new qiniu.conf.Config();
         // 空间对应的机房
@@ -40,7 +42,7 @@ function saveStreamAndGetDownloadUrl(fileUrl, prefix, filetype) {
         const secretKey = qiniuConf.sk;
         const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
         const options = {
-            scope: qiniuConf.bunket,
+            scope: qiniuConf.bunket
         };
         const putPolicy = new qiniu.rs.PutPolicy(options);
         const uploadToken = putPolicy.uploadToken(mac);
