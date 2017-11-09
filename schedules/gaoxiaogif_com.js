@@ -4,7 +4,7 @@ const Iconv = require('iconv-lite');
 module.exports = {
     schedule: '0 40 */2 * * *',
     collection: 'joke',
-    startpage: 2,
+    startpage: 268,
     request: {
         url: 'http://www.gaoxiaogif.com/index_%d.html',
         transform: function (body) {

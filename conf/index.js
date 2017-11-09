@@ -1,6 +1,7 @@
 const def = {
+    dev: true,
     mongo: {
-        uri: '127.0.0.1',
+        uri: 'miup.cc',
         port:
             '17017',
         dbName:
@@ -11,9 +12,10 @@ const def = {
         sk:
             'jejMhQNTaImuhp5Y8GlC9v8mno6Kk3WjhOo-VTb5',
         bunket:
-            'joke-imgs',
+            'static',
         domain:
-            'http://oyy55dglc.bkt.clouddn.com'
+            'http://oz54c721s.bkt.clouddn.com',
+        zone: 'Zone_z0'
     },
     log: {
         path: "/var/log/node/miup-schedules/",

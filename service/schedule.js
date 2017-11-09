@@ -44,7 +44,7 @@ async function run(conf, log) {
                 log.info(`解析第　${page}页的数据完毕，获取${datas.length}条数据，开始保存。。。`);
                 for (let entity of datas) {
                     canNext = await  entitySaveService.saveEntity(entity, db, conf.qiniuParams, log);
-                    log.info(`实体保存${canNext ? '成功' : '失败'}：${JSON.stringify(entity)}`);
+                    log.info(`实体保存${canNext ? '成功' : '失败'}：${entity.title}`);
                     if (false === canNext) {
                         log.info('这条数据已经保存了，over');
                         break;

@@ -36,7 +36,7 @@ function saveStreamAndGetDownloadUrl(fileUrl,log, prefix, filetype) {
     return new Promise((resolve, reject) => {
         let config = new qiniu.conf.Config();
         // 空间对应的机房
-        config.zone = qiniu.zone.Zone_z2;
+        config.zone = qiniu.zone[qiniuConf.zone];
         //鉴权对象
         const accessKey = qiniuConf.ak;
         const secretKey = qiniuConf.sk;
@@ -86,7 +86,7 @@ module.exports.deleteFile = (fileKey) => {
     return new Promise((resolve, reject) => {
         let config = new qiniu.conf.Config();
         // 空间对应的机房
-        config.zone = qiniu.zone.Zone_z2;
+        config.zone = qiniu.zone[qiniuConf.zone];
         //鉴权对象
         const accessKey = qiniuConf.ak;
         const secretKey = qiniuConf.sk;

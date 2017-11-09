@@ -34,8 +34,10 @@ module.exports = {
         Logger.configure(log_conf_base);
 
         schdules.forEach(s => {
-            const sc = require(s.file);
-            new Schudule(sc, Logger.getLogger(s.name));
+            if (s.name === 'gaoxiaogif_com') {
+                const sc = require(s.file);
+                Schudule.run(sc, Logger.getLogger(s.name));
+            }
         })
     }
 };
