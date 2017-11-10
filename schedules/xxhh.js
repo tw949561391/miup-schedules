@@ -3,7 +3,7 @@ const cryptoUtil = require('../core/util/crypto.util');
 module.exports = {
     schedule: '0 49 */2 * * *',
     collection: 'joke',
-    startpage: 1,
+    startpage: 168,
     request: {
         url: 'http://www.xxhh.com/tag/%E5%8A%A8%E6%80%81%E5%9B%BE/page/%d/',
         transform: function (body) {
