@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const cryptoUtil = require('../core/util/crypto.util');
 module.exports = {
-    schedule: '0 30 */2 * * *',
+    schedule: '0 30 */6 * * *',
     collection: 'joke',
     startpage: 1,
     request: {

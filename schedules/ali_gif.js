@@ -1,6 +1,6 @@
 const cryptoUtil = require('../core/util/crypto.util');
 module.exports = {
-    schedule: '0 0 */2 * * *',
+    schedule: '0 0 */6 * * *',
     startpage: 1,
     collection: 'joke',
     request: {

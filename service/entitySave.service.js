@@ -13,7 +13,7 @@ module.exports = {
                 if (conf.dev) {
                     return true;
                 } else {
-                    return false;
+                    return true;
                 }
             } else { //不存在
                 log.info('对象不存在');

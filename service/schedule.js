@@ -61,7 +61,6 @@ async function run(conf, log) {
         log.error(e);
     } finally {
         Mongo.release(client);
-
     }
 }
 

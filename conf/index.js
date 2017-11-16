@@ -16,7 +16,7 @@ const def = {
             'http://oyy55dglc.bkt.clouddn.com'
     },
     log: {
-        path: "/var/log/node/miup-schedules/",
+        path: "/var/log/node/miup-schedule/",
         log_conf_base:
             {
                 appenders: {
