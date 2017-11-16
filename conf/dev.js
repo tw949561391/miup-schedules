@@ -9,7 +9,8 @@ module.exports = {
         ak: '65f-xBvwsecGWsUrUdU1tTGk3a0Z87LCTkyFOx0W',
         sk: 'jejMhQNTaImuhp5Y8GlC9v8mno6Kk3WjhOo-VTb5',
         bunket: 'test',
-        domain: 'http://oyy55dglc.bkt.clouddn.com'
+        domain: 'http://oyy55dglc.bkt.clouddn.com',
+        zone:'Zone_z2'
     },
     log: {
         path: "./",

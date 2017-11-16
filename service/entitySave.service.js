@@ -2,6 +2,24 @@ const Util = require('util');
 const Qiniu = require('../core/qiniu');
 const conf = require('../conf');
 module.exports = {
+    isAllSaved: async function (entitys, db) {
+        if (Util.isNullOrUndefined(entitys)) {
+            return true;
+        }
+        if (!Util.isArray(entitys) || entitys.length === 0) {
+            return true;
+        }
+        let outIds = [];
+        entitys.forEach(entity => {
+            outIds.push(entity.out_id);
+        });
+        let count = await db.find({out_id: {$in: outIds}}).count();
+        if (count < outIds.length) {
+            return false;
+        } else {
+            return true;
+        }
+    },
     saveEntity: async (entity, db, saveEntityParams, log) => {
         try {
             //先把要保存的七牛云的参数保存起来
