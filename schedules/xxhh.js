@@ -29,7 +29,7 @@ module.exports = {
                         resdata.push({
                             title: title,
                             pics: pics,
-                            create_time: new Date(),
+                            create_time: Date.now(),
                             out_id: outId,
                             type: 2,
                             from: 'www.xxhh.com'

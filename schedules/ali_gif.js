@@ -23,7 +23,7 @@ module.exports = {
                     let item = {
                         title: l.title,
                         pics: pics,
-                        create_time: new Date(),
+                        create_time: Date.now(),
                         out_id: cryptoUtil.md5(l.title + l.img),
                         type: 2,
                         from: 'ali-joke.showapi.com'

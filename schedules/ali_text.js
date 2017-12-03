@@ -25,7 +25,7 @@ module.exports = {
                         title: l.title,
                         content:l.text,
                         pics: pics,
-                        create_time: new Date(),
+                        create_time: Date.now(),
                         out_id: out_id,
                         type: 0,
                         from: 'ali-joke.showapi.com'

@@ -2,10 +2,17 @@
   "name": "miup-schedules",
   "version": "0.0.1",
   "scripts": {
-    "start": "node bin/start",
-    "server": "forever start -a -l  /var/log/node/miup-schedule/forever.log -o /var/log/node/miup-schedule/out.log -e /var/log/node/miup-schedule/err.log bin/start",
-    "server-stop": "forever stop bin/start",
-    "upload": "scp  -r ./ root@miup.cc:/web/miup-schedule"
+    "start": "npm run drop-log && npm run mkdir && npm run ui && npm run i && npm run server && npm run watch &&npm run success",
+    "stop": "forever stop ./bin/www",
+    "restart": "npm stop && npm start",
+    "drop-log": "rm -rf  /var/log/node/miup-schedules",
+    "mkdir": "mkdir -p /var/log/node/miup-schedules",
+    "ui": "rm -rf node_modules",
+    "i": "npm i",
+    "server": "export NODE_ENV=prod&& forever start -a  -l /var/log/node/miup-schedules/forever.log  -e /var/log/node/miup-schedules/err.log ./bin/www",
+    "watch": "sleep 3 && cat /var/log/node/miup-schedules/forever.log",
+    "success": "echo \"success\"",
+    "upload": "scp  -r ./ root@miup.cc:/web/miup-schedules"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
