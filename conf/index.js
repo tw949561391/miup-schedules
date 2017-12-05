@@ -1,7 +1,7 @@
-const def = {
+let def = {
     dev: true,
     mongo: {
-        uri: 'miup.cc',
+        uri: 'localhost',
         port:
             '17017',
         dbName:
@@ -40,8 +40,10 @@ const def = {
     }
 };
 
-// module.exports = require('./dev');
-module.exports = def;
+
+
+module.exports = require('./dev');
+// module.exports = def;
 
 
 

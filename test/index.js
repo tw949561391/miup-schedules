@@ -7,21 +7,11 @@ async function sss() {
     const collection = db.collection("joke")
 
 
-    let skip = 0;
-    let jokes = [];
-
-    do {
-        jokes = await collection.find({type: 2}).skip(skip).limit(1).toArray();
-        if (jokes.length > 0) {
-            let joke = jokes[0];
-            if (typeof joke.create_time === 'object') {
-                await collection.updateOne({_id: new ObjectID(joke._id)}, {$set: {create_time: joke.create_time.getTime()}});
-            }
-            console.log(skip, joke._id);
-            skip++
-        } else {
-        }
-    } while (jokes.length > 0)
+    await collection.createIndex("_create_time_",{
+        "create_time":1
+    });
+    MongoPool.release(db);
+    console.log("ok")
 }
 
 

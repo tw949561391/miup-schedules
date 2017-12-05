@@ -3,7 +3,7 @@ module.exports = {
     mongo: {
         uri: 'miup.cc',
         port: '17017',
-        dbName: 'joke-test'
+        dbName: 'joke'
     },
     qiniu: {
         ak: '65f-xBvwsecGWsUrUdU1tTGk3a0Z87LCTkyFOx0W',
